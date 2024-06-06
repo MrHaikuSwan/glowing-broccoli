@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Card, CardContent } from "@/components/ui/card";
 
 const links = [
   { text: "Home", href: "/dashboard" },
@@ -39,7 +40,6 @@ export default function SideNav() {
           </Link>
         ))}
       </div>
-      <div>{/* User Profile (extension) */}</div>
     </div>
   );
 }

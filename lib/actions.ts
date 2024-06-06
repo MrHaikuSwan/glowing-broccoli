@@ -60,3 +60,14 @@ export async function login(formData: FormData) {
 export async function logout() {
   cookies().set("session", "", { expires: new Date(0) });
 }
+
+export async function getEntityStatus(entId: string) {
+  const mercoa = new MercoaClient({ token: process.env.API_KEY! });
+  try {
+    const res = await mercoa.entity.get(entId);
+    return res.status;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
