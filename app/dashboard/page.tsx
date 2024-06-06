@@ -1,17 +1,20 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { MercoaSession } from "@mercoa/react";
+import { EntityOnboarding, MercoaSession } from "@mercoa/react";
 import { useSearchParams } from "next/navigation";
 
 function MercoaComponent() {
   const [token, setToken] = useState("");
   const searchParams = useSearchParams();
+
+  const entId = searchParams.get("entId")!;
+
   useEffect(() => {
     // Call Your Token Generator Endpoint
     fetch(
       `/api/generateMercoaToken?${new URLSearchParams({
-        entId: searchParams.get("entId")!,
+        entId,
       })}`
     ).then(async (resp) => {
       if (resp.status === 200) {
@@ -27,13 +30,17 @@ function MercoaComponent() {
     return null;
   }
 
-  return <MercoaSession token={token} />;
+  return (
+    <MercoaSession token={token}>
+      <EntityOnboarding entityId={entId} type="payor"></EntityOnboarding>
+    </MercoaSession>
+  );
 }
 
 export default function Approval() {
   return (
     <Suspense>
-      <MercoaComponent />;
+      <MercoaComponent />
     </Suspense>
   );
 }

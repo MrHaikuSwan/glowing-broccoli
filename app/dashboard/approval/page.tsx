@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { MercoaSession } from "@mercoa/react";
+import { ApprovalPolicies, MercoaSession } from "@mercoa/react";
 import { useSearchParams } from "next/navigation";
 
 function MercoaComponent() {
@@ -27,13 +27,19 @@ function MercoaComponent() {
     return null;
   }
 
-  return <MercoaSession token={token} />;
+  return (
+    <MercoaSession token={token}>
+      <ApprovalPolicies />
+    </MercoaSession>
+  );
 }
 
 export default function Approval() {
   return (
-    <Suspense>
-      <MercoaComponent />;
-    </Suspense>
+    <div className="flex mx-auto px-8 py-8 justify-center">
+      <Suspense>
+        <MercoaComponent />
+      </Suspense>
+    </div>
   );
 }

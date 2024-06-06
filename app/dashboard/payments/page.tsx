@@ -33,7 +33,7 @@ function MercoaComponent() {
 export default function Payments() {
   return (
     <Suspense>
-      <MercoaComponent />;
+      <MercoaComponent />
     </Suspense>
   );
 }

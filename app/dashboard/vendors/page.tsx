@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { MercoaSession } from "@mercoa/react";
+import { Counterparties, MercoaSession } from "@mercoa/react";
 import { useSearchParams } from "next/navigation";
 
 function MercoaComponent() {
@@ -27,13 +27,19 @@ function MercoaComponent() {
     return null;
   }
 
-  return <MercoaSession token={token} />;
+  return (
+    <MercoaSession token={token}>
+      <Counterparties type="payee" />
+    </MercoaSession>
+  );
 }
 
 export default function Vendors() {
   return (
-    <Suspense>
-      <MercoaComponent />;
-    </Suspense>
+    <div className="mx-auto px-8">
+      <Suspense>
+        <MercoaComponent />
+      </Suspense>
+    </div>
   );
 }
