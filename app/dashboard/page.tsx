@@ -51,7 +51,7 @@ function Welcome() {
         <CardHeader className="text-center space-y-2">
           <CardTitle className="text-2xl font-bold">Welcome Aboard!</CardTitle>
           <CardDescription className="text-gray-500 dark:text-gray-400">
-            Your business has been verified! You're all set to get started.
+            Your business has been verified! You&apos;re all set to get started.
           </CardDescription>
         </CardHeader>
         <CardContent className="mt-6">
@@ -104,7 +104,7 @@ export default function Home({
 
   useEffect(() => {
     getEntityStatus(entId).then((value) => setStatus(value));
-  }, []);
+  }, [searchParams]);
 
   return (
     <div>
