@@ -17,6 +17,7 @@ import { useFormState, useFormStatus } from "react-dom";
 export function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
+  // TODO: Should add an animation for login button
   return (
     <div className="w-full max-w-md">
       <form action={dispatch}>
