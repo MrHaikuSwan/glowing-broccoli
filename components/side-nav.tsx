@@ -11,6 +11,8 @@ const links = [
   { text: "Approval Rules", href: "/dashboard/approval" },
 ];
 
+// TODO: This shouldn't be a client component, use prop drilling workaround
+// TODO: Maybe just define in app/dashboard/layout.tsx?
 export default function SideNav() {
   const searchParams = useSearchParams();
   const entId = searchParams.get("entId");
