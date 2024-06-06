@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import {
   Card,
   CardContent,
@@ -20,6 +18,7 @@ export function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
   // TODO: Should add an animation for login button
+  // NOTE: Placeholder values are coincidentally the correct values for demo ease
   return (
     <div className="w-full max-w-sm">
       <form action={dispatch}>
@@ -27,8 +26,7 @@ export function LoginForm() {
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold">Login</CardTitle>
             <CardDescription>
-              Enter your Company ID, username and password to login to your
-              account
+              Enter your Company ID, email and password to login to your account
             </CardDescription>
           </CardHeader>
           <div className="text-center text-red-400 pb-4">
@@ -47,12 +45,12 @@ export function LoginForm() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="userid">User ID</Label>
+                <Label htmlFor="userId">User Email</Label>
                 <Input
-                  id="userid"
-                  name="userid"
+                  id="userId"
+                  name="userId"
                   type="text"
-                  placeholder="johndoe"
+                  placeholder="alice-fid"
                   required
                 />
               </div>

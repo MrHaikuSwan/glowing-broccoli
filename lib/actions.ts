@@ -13,33 +13,45 @@ export async function authenticate(_currentState: unknown, formData: FormData) {
 
   // NOTE: Hardcoded
   // Fake retrieval of identifier's foreignId from DB
-  const foreignId = "mer_c509ca41-2726-4594-a5f4-4429c64977a9";
-
-  // TODO: Improve error handling
+  const foreignEntId = "mer_c509ca41-2726-4594-a5f4-4429c64977a9";
+  const foreignUserId = formData.get("userId")!.toString();
   const mercoa = new MercoaClient({ token: process.env.API_KEY! });
+
   let entId;
   try {
     const response = await mercoa.entity.find({
       isCustomer: true,
-      foreignId,
+      foreignId: foreignEntId,
     });
     entId = response.data[0].id;
   } catch (e) {
-    return "Failed to find account; please try again.";
+    return "Failed to find business entity.";
   }
 
-  redirect(`/dashboard?entId=${entId}`);
+  // NOTE: Looks like user search for anything besides foreignIds is broken?
+  let userId;
+  try {
+    const response = await mercoa.entity.user.find(entId, {
+      foreignId: foreignUserId,
+    });
+    console.log(response);
+    userId = response.data[0].id;
+  } catch (e) {
+    return "Failed to find user within business entity.";
+  }
+
+  redirect(`/dashboard?entId=${entId}&userId=${userId}`);
 }
 
 export async function login(formData: FormData) {
-  const id = formData.get("identifier");
-  const password = formData.get("password");
-  if (id != "acmecorp" || password != "1234") {
+  const formId = formData.get("identifier")!.toString();
+  const formPassword = formData.get("password")!.toString();
+  if (formId !== "acmecorp" || formPassword !== "1234") {
     throw new Error();
   }
 
   // NOTE: Faking auth, unencrypted session cookie is a security risk
-  cookies().set("session", id, {
+  cookies().set("session", formId, {
     expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
     httpOnly: true,
   });
