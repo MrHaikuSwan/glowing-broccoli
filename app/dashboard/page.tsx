@@ -46,30 +46,32 @@ function MercoaComponent() {
 
 function Welcome() {
   return (
-    <Card className="mx-auto w-lg max-w-lg p-6 bg-white dark:bg-gray-950 rounded-xl shadow-lg">
-      <CardHeader className="text-center space-y-2">
-        <CardTitle className="text-2xl font-bold">Welcome Aboard!</CardTitle>
-        <CardDescription className="text-gray-500 dark:text-gray-400">
-          Your business has been verified! You're all set to get started.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="mt-6">
-        <ul className="space-y-2 text-left">
-          <li className="flex items-center gap-2">
-            <CheckIcon className="h-5 w-5 text-green-500" />
-            <span>Create and track your current invoices</span>
-          </li>
-          <li className="flex items-center gap-2">
-            <CheckIcon className="h-5 w-5 text-green-500" />
-            <span>Manage your vendor information</span>
-          </li>
-          <li className="flex items-center gap-2">
-            <CheckIcon className="h-5 w-5 text-green-500" />
-            <span>Define powerful invoice approval rules</span>
-          </li>
-        </ul>
-      </CardContent>
-    </Card>
+    <div className="h-screen">
+      <Card className="mx-auto w-lg max-w-lg p-6 bg-white dark:bg-gray-950 rounded-xl shadow-lg">
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-2xl font-bold">Welcome Aboard!</CardTitle>
+          <CardDescription className="text-gray-500 dark:text-gray-400">
+            Your business has been verified! You're all set to get started.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="mt-6">
+          <ul className="space-y-2 text-left">
+            <li className="flex items-center gap-2">
+              <CheckIcon className="h-5 w-5 text-green-500" />
+              <span>Create and track your current invoices</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon className="h-5 w-5 text-green-500" />
+              <span>Manage your vendor information</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon className="h-5 w-5 text-green-500" />
+              <span>Define powerful invoice approval rules</span>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
@@ -108,7 +110,13 @@ export default function Home({
     <div>
       {status !== "" &&
         (status === "verified" ? (
-          <Welcome />
+          <>
+            <Welcome />
+            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+            <Suspense>
+              <MercoaComponent />
+            </Suspense>
+          </>
         ) : (
           <Suspense>
             <MercoaComponent />
