@@ -10,8 +10,10 @@ const mercoa = new MercoaClient({
 export async function GET(request: NextRequest) {
   const token = await mercoa.entity.getToken(
     request.nextUrl.searchParams.get("entId")!,
-    { expiresIn: "1h" }
+    { expiresIn: "1h", pages: { paymentMethods: true } }
   );
+
+  console.log(token);
 
   return Response.json({
     token,
