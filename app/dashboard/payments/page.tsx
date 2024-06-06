@@ -7,13 +7,10 @@ import { useSearchParams } from "next/navigation";
 function MercoaComponent() {
   const [token, setToken] = useState("");
   const searchParams = useSearchParams();
+
   useEffect(() => {
     // Call Your Token Generator Endpoint
-    fetch(
-      `/api/generateMercoaToken?${new URLSearchParams({
-        entId: searchParams.get("entId")!,
-      })}`
-    ).then(async (resp) => {
+    fetch(`/api/generateMercoaToken?${searchParams}`).then(async (resp) => {
       if (resp.status === 200) {
         setToken((await resp.json()).token);
       } else {
