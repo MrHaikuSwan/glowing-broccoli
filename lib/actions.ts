@@ -11,6 +11,7 @@ export async function authenticate(_currentState: unknown, formData: FormData) {
     return "Invalid credentials.";
   }
 
+  // NOTE: Hardcoded
   // Fake retrieval of identifier's foreignId from DB
   const foreignId = "mer_c509ca41-2726-4594-a5f4-4429c64977a9";
 

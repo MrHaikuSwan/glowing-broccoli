@@ -25,6 +25,7 @@ export default function Dashboard({ searchParams }: DashboardProps) {
   //     });
   // }, []);
 
+  // NOTE: HARDCODED
   let hardtoken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb25JZCI6Im9yZ190ZXN0XzAxZmUxZDdmLWRiY2MtNDA5OC04MTAyLTRkMzFhM2IwNmQyNyIsImVudGl0eUlkIjoiZW50X2NlZDQ3NTY3LTExM2QtNDU5My1iZWQxLWNhZDlkYzcwNmQwNCIsIm9wdGlvbnMiOnsiZXhwaXJlc0luIjoiMjRociJ9LCJtb292Ijp7InRva2VuIjoic2FuZGJveCIsImFjY291bnRJZCI6InNhbmRib3gifSwiaWF0IjoxNzE3NjMzMDYzLCJleHAiOjE3MTc3MTk0NjN9.zHJYs996hpeO-qimSZemYTGeGBLVfnHucS-W1S8gL8g`;
 
   return (
