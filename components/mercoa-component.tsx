@@ -21,7 +21,7 @@ export default function MercoaComponent() {
         console.log(resp);
       }
     });
-  }, []);
+  }, [searchParams]);
 
   // NOTE: Had to add this myself, example from the docs didn't work nicely
   if (token === "") {
