@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { MercoaSession } from "@mercoa/react";
+import { EntityPortal, MercoaSession } from "@mercoa/react";
 import { useSearchParams } from "next/navigation";
 
 function MercoaComponent() {
@@ -24,7 +24,11 @@ function MercoaComponent() {
     return null;
   }
 
-  return <MercoaSession token={token} />;
+  return (
+    <MercoaSession token={token}>
+      <EntityPortal token={token} />
+    </MercoaSession>
+  );
 }
 
 export default function Payments() {

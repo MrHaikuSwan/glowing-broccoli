@@ -34,7 +34,7 @@ function MercoaComponent() {
   );
 }
 
-export default function Approval() {
+export default function Home() {
   return (
     <Suspense>
       <MercoaComponent />
