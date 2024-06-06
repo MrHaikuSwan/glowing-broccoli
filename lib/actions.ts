@@ -1,17 +1,33 @@
 "use server";
 
+import { MercoaClient } from "@mercoa/javascript";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function authenticate(_currentState: unknown, formData: FormData) {
-  // Hardcoded "fake" business login authentication server action
   try {
     await login(formData);
   } catch (error) {
     return "Invalid credentials.";
   }
 
-  redirect("/dashboard");
+  // Fake retrieval of identifier's foreignId from DB
+  const foreignId = "mer_c509ca41-2726-4594-a5f4-4429c64977a9";
+
+  // TODO: Improve error handling
+  const mercoa = new MercoaClient({ token: process.env.API_KEY! });
+  let entId;
+  try {
+    const response = await mercoa.entity.find({
+      isCustomer: true,
+      foreignId,
+    });
+    entId = response.data[0].id;
+  } catch (e) {
+    return "Failed to find account; please try again.";
+  }
+
+  redirect(`/dashboard?entId=${entId}`);
 }
 
 export async function login(formData: FormData) {
